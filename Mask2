@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultima LED Beauty Mask - Szakmai Áttekintés</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+
+        .tab-active {
+            border-bottom: 3px solid #0ea5e9;
+            color: #0f172a;
+            font-weight: 600;
+        }
+        .tab-inactive {
+            border-bottom: 3px solid transparent;
+            color: #64748b;
+        }
+        .tab-inactive:hover {
+            color: #0ea5e9;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .lang-btn:hover {
+            background-color: #e0f2fe;
+        }
+        .lang-btn.active {
+            background-color: #0ea5e9;
+            color: white;
+            border-color: #0284c7;
+        }
+
+        .medical-content p { margin-bottom: 1.25rem; line-height: 1.75; }
+        .medical-content h3 { margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; color: #0f172a; border-left: 4px solid #0ea5e9; padding-left: 1rem; }
+        .medical-content ul { margin-bottom: 1.5rem; list-style-type: none; }
+        .medical-content li { margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative; }
+        .medical-content li::before { content: "•"; position: absolute; left: 0; color: #0ea5e9; font-weight: bold; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans leading-relaxed">
+
+    <div class="max-w-7xl mx-auto min-h-screen flex flex-col">
+        
+        <!-- Fejléc -->
+        <header class="bg-white shadow-sm sticky top-0 z-50">
+            <div class="px-4 py-4 md:px-8 flex justify-between items-center flex-wrap gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900 tracking-tight">ULTIMA <span class="text-sky-500 font-light">EXPERT PORTAL</span></h1>
+                    <p id="subtitle" class="text-xs text-slate-500 uppercase tracking-wider mt-1">Szakmai Dokumentáció Klinikai Felhasználásra</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <!-- Nyelváltó gombok -->
+                    <div class="flex gap-2 bg-slate-100 p-1 rounded-lg">
+                        <button onclick="window.switchLanguage('hu')" class="lang-btn active" id="lang-hu">
+                            🇭🇺 HU
+                        </button>
+                        <button onclick="window.switchLanguage('en')" class="lang-btn" id="lang-en">
+                            🇬🇧 EN
+                        </button>
+                        <button onclick="window.switchLanguage('nl')" class="lang-btn" id="lang-nl">
+                            🇳🇱 NL
+                        </button>
+                    </div>
+                    <div class="hidden md:block">
+                        <span id="badge" class="bg-sky-100 text-sky-800 text-xs font-semibold px-3 py-1 rounded-full border border-sky-200">Klinikai Szakértői Verzió</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigáció -->
+            <nav class="flex overflow-x-auto px-4 md:px-8 border-t border-slate-100 bg-white">
+                <button onclick="window.switchTab('overview')" id="btn-overview" class="tab-active px-6 py-3 text-sm transition-colors whitespace-nowrap">Áttekintés</button>
+                <button onclick="window.switchTab('science')" id="btn-science" class="tab-inactive px-6 py-3 text-sm transition-colors whitespace-nowrap">Hullámhossz Analízis</button>
+                <button onclick="window.switchTab('deepdive')" id="btn-deepdive" class="tab-inactive px-6 py-3 text-sm transition-colors whitespace-nowrap">Szakmai Mélyfúrás</button>
+                <button onclick="window.switchTab('comparison')" id="btn-comparison" class="tab-inactive px-6 py-3 text-sm transition-colors whitespace-nowrap">Összehasonlítás</button>
+            </nav>
+        </header>
+
+        <!-- Tartalmi terület -->
+        <main class="flex-grow p-4 md:p-8 space-y-8">
+
+            <!-- NÉZET: ÁTTEKINTÉS -->
+            <section id="view-overview" class="block">
+                <div class="mb-6">
+                    <h2 id="overview-title" class="text-2xl font-bold text-slate-800 mb-2">Technológiai Szinergia az Esztétikában</h2>
+                    <p id="overview-intro" class="text-slate-600 max-w-4xl text-lg">
+                        Az Ultima LED maszk a legmodernebb fotobiomodulációs (PBM) eszköz, amelyet a klinikai lifting kezelések otthoni támogatására és a minimálinvazív beavatkozások hatásának fokozására fejlesztettek ki.
+                    </p>
+                </div>
+
+                <!-- Kulcsfontosságú mutatók grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                        <div class="text-3xl mb-2">⚖️</div>
+                        <h3 id="stat-weight" class="font-semibold text-slate-900">93 gramm</h3>
+                        <p id="stat-weight-desc" class="text-sm text-slate-500">Ultrakönnyű orvosi szilikon váz</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                        <div class="text-3xl mb-2">🧬</div>
+                        <h3 id="stat-pbm" class="font-semibold text-slate-900">PBM Technológia</h3>
+                        <p id="stat-pbm-desc" class="text-sm text-slate-500">Sejtszintű biostimuláció</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                        <div class="text-3xl mb-2">🛡️</div>
+                        <h3 id="stat-protection" class="font-semibold text-slate-900">Szemvédelem</h3>
+                        <p id="stat-protection-desc" class="text-sm text-slate-500">Beépített árnyékolás, IP67 védelem</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                        <div class="text-3xl mb-2">🧖‍♀️</div>
+                        <h3 id="stat-silicone" class="font-semibold text-slate-900">Orvosi Szilikon</h3>
+                        <p id="stat-silicone-desc" class="text-sm text-slate-500">Bőrbarát, élelmiszeripari minőség</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col md:flex-row">
+                    <div class="p-8 md:w-2/3">
+                        <h3 id="pillars-title" class="text-xl font-bold text-slate-800 mb-4">A klinikai hatékonyság pillérei</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-sky-500 mr-2 font-bold">✓</span>
+                                <span><strong id="pillar1-title">Folyamatos kollagénaktiváció:</strong> <span id="pillar1-desc">A két klinikai kezelés közötti időszakban is „bekapcsolva tartja" a regenerációt.</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-sky-500 mr-2 font-bold">✓</span>
+                                <span><strong id="pillar2-title">Gyorsabb regeneráció:</strong> <span id="pillar2-desc">Csökkenti a gyulladást és a downtime-ot lézeres vagy RF kezelések után.</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-sky-500 mr-2 font-bold">✓</span>
+                                <span><strong id="pillar3-title">Páciens compliance:</strong> <span id="pillar3-desc">Kényelmes, méhsejt design; multitasking lehetőség használat közben.</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-sky-900 text-white p-8 md:w-1/3 flex flex-col items-center justify-center text-center">
+                        <div class="text-5xl mb-4">✨</div>
+                        <p id="quote" class="text-lg font-medium italic">"Tudományos alapú utóápolás a maximális eredményért."</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NÉZET: TUDOMÁNY -->
+            <section id="view-science" class="hidden">
+                <div class="mb-6">
+                    <h2 id="science-title" class="text-xl font-bold text-slate-800 mb-2">Fotobiomoduláció (PBM)</h2>
+                    <p id="science-intro" class="text-slate-600 max-w-3xl">
+                        A LED-fény energiaforrásként szolgál a sejtek számára. Nem hőhatással dolgozik, hanem biológiai válaszreakciókat vált ki a mitokondriális aktivitás fokozásával.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-1 space-y-4">
+                        <button onclick="window.updateWavelength('blue')" class="w-full text-left p-4 rounded-xl border border-blue-200 bg-blue-50 transition-all hover:shadow-md hover:bg-blue-100">
+                            <div class="flex items-center justify-between">
+                                <span id="wave-blue" class="font-bold text-blue-800">415 nm (Kék)</span>
+                                <span class="w-4 h-4 rounded-full bg-blue-500 shadow-sm border border-white"></span>
+                            </div>
+                            <p id="wave-blue-desc" class="text-xs text-blue-600 mt-1">Epidermisz: antibakteriális hatás</p>
+                        </button>
+                        <button onclick="window.updateWavelength('yellow')" class="w-full text-left p-4 rounded-xl border border-yellow-200 bg-yellow-50 transition-all hover:shadow-md hover:bg-yellow-100">
+                            <div class="flex items-center justify-between">
+                                <span id="wave-yellow" class="font-bold text-yellow-800">590 nm (Sárga)</span>
+                                <span class="w-4 h-4 rounded-full bg-yellow-400 shadow-sm border border-white"></span>
+                            </div>
+                            <p id="wave-yellow-desc" class="text-xs text-yellow-600 mt-1">Felső dermisz: pirosság csökkentése</p>
+                        </button>
+                        <button onclick="window.updateWavelength('red')" class="w-full text-left p-4 rounded-xl border border-red-200 bg-red-50 transition-all hover:shadow-md hover:bg-red-100">
+                            <div class="flex items-center justify-between">
+                                <span id="wave-red" class="font-bold text-red-800">630 nm (Vörös)</span>
+                                <span class="w-4 h-4 rounded-full bg-red-500 shadow-sm border border-white"></span>
+                            </div>
+                            <p id="wave-red-desc" class="text-xs text-red-600 mt-1">Mély dermisz: kollagén & elasztin</p>
+                        </button>
+                        <button onclick="window.updateWavelength('nir')" class="w-full text-left p-4 rounded-xl border border-purple-200 bg-purple-50 transition-all hover:shadow-md hover:bg-purple-100">
+                            <div class="flex items-center justify-between">
+                                <span id="wave-nir" class="font-bold text-purple-900">850 nm (NIR)</span>
+                                <span class="w-4 h-4 rounded-full bg-purple-800 shadow-sm border border-white"></span>
+                            </div>
+                            <p id="wave-nir-desc" class="text-xs text-purple-700 mt-1">Szubkután: sejtregeneráció</p>
+                        </button>
+                    </div>
+
+                    <div class="lg:col-span-2 space-y-6">
+                        <div id="wavelength-info" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm min-h-[160px] transition-all duration-300">
+                            <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                                <span id="info-icon" class="text-2xl">🔵</span> 
+                                <span id="info-title">Válasszon hullámhosszt...</span>
+                            </h3>
+                            <div class="mt-3 text-slate-600" id="info-desc">
+                                <p id="select-wavelength-desc">Kattintson az egyik spektrumra a klinikai hatásmechanizmus megtekintéséhez.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                            <div class="chart-container">
+                                <canvas id="penetrationChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NÉZET: SZAKMAI MÉLYFÚRÁS -->
+            <section id="view-deepdive" class="hidden space-y-8">
+                <div class="max-w-5xl mx-auto bg-white p-8 md:p-12 rounded-3xl border border-slate-200 shadow-sm medical-content">
+                    <h2 id="deepdive-title" class="text-3xl font-bold text-slate-900 mb-8 border-b pb-4">Klinikai Szinergiák és Eredmények</h2>
+
+                    <h3 id="synergy-botox-title">ULTIMAFACE HILEFT és BOTOX szinergia</h3>
+                    <p id="synergy-botox-intro">A modern esztétikában a Botox kiválóan alkalmas a mimikai ráncok blokkolására, de nem javítja közvetlenül a bőr textúráját. Az ULTIMAFACE HILEFT kiegészítő kezelésként való alkalmazása a következő előnyöket nyújtja:</p>
+                    <ul>
+                        <li><strong id="synergy-point1-title">Fokozott bőrfeszesítés:</strong> <span id="synergy-point1-desc">Míg a Botox az izmok blokkolásával simít, a HILEFT közvetlenül az izomtónust és a bőr textúráját célozza, ott is emelve a bőrt, ahol a Botox önmagában nem elegendő.</span></li>
+                        <li><strong id="synergy-point2-title">Kollagén- és elasztin-termelés serkentése:</strong> <span id="synergy-point2-desc">A vörös fény terápia elengedhetetlen a bőr rugalmasságához, így a bőr összességében egészségesebb és egyenletesebb lesz.</span></li>
+                        <li><strong id="synergy-point3-title">Tartósabb eredmények:</strong> <span id="synergy-point3-desc">Megőrizheti a bőrtónust és az elaszticitást, meghosszabbítva a Botox eredményeit és csökkentve az utántöltések gyakoriságát.</span></li>
+                        <li><strong id="synergy-point4-title">Izomtömeg regeneráció:</strong> <span id="synergy-point4-desc">A Botox hosszú távú használata izomsorvadást okozhat. A HILEFT technológia segít az izmok újjáépítésében és karbantartásában, stabil alapot biztosítva a bőrnek.</span></li>
+                    </ul>
+
+                    <h3 id="synergy-other-title">Szinergiák egyéb beavatkozásokkal</h3>
+                    <p id="synergy-other-intro">A maszk nemcsak kiegészítő, hanem aktív utóápolási elem a következő esetekben:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                            <h4 id="filler-title" class="font-bold text-slate-900 mb-2">Hialuronsavas töltések</h4>
+                            <p id="filler-desc" class="text-sm">A maszk napi használata „bekapcsolva tartja" a kollagénaktivációt, így a töltőanyag egy élettelibb szöveti környezetben helyezkedik el, ami javítja a kezelés tartósságát.</p>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                            <h4 id="energy-title" class="font-bold text-slate-900 mb-2">Energiaalapú kezelések (Lézer, RF, HIFU)</h4>
+                            <p id="energy-desc" class="text-sm">A kontrollált hőkárosodás után a vörös fényterápia támogatja a sebgyógyulást, csökkenti a gyulladást és gyorsítja a szöveti helyreállítást a downtime alatt.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-6 bg-sky-50 rounded-2xl border border-sky-100 italic">
+                        <p id="therapy-quote">"A fényterápia célja a szervezet saját, természetes regenerációs képességeinek felerősítése, ami maximalizálja a klinikai beavatkozások esztétikai végeredményét."</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NÉZET: ÖSSZEHASONLÍTÁS -->
+            <section id="view-comparison" class="hidden">
+                <div class="mb-6">
+                    <h2 id="comparison-title" class="text-xl font-bold text-slate-800 mb-2">Piaci Komparáció</h2>
+                    <p id="comparison-intro" class="text-slate-600">Miért az Ultima a választás az esztétikai orvoslásban?</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-slate-100 p-8 rounded-2xl opacity-70 border border-slate-200">
+                        <h3 id="traditional-title" class="font-bold text-slate-500 mb-4 uppercase text-xs tracking-widest border-b pb-2">Hagyományos Merev Maszkok</h3>
+                        <ul class="space-y-4 text-slate-600">
+                            <li class="flex items-center gap-3">✕ <span id="trad-point1">Merev, nehéz és kényelmetlen (nyomja az arcot)</span></li>
+                            <li class="flex items-center gap-3">✕ <span id="trad-point2">Zárt szerkezet, befülled, hőt halmoz fel</span></li>
+                            <li class="flex items-center gap-3">✕ <span id="trad-point3">Nincs beépített szemvédelem (fényszennyezés)</span></li>
+                            <li class="flex items-center gap-3">✕ <span id="trad-point4">Alap LED technológia, nem precíziós hullámhossz</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl border-2 border-sky-100 shadow-xl relative">
+                        <div class="absolute top-0 right-0 bg-sky-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+                            <span id="premium-badge">PRÉMIUM KIVITEL</span>
+                        </div>
+                        <h3 class="font-bold text-sky-600 mb-4 uppercase text-xs tracking-widest border-b pb-2">Ultima LED Mask</h3>
+                        <ul class="space-y-4 text-slate-700 font-medium">
+                            <li class="flex items-center gap-3">✓ <span id="ultima-point1">93g Rugalmas Szilikon - tökéletes illeszkedés</span></li>
+                            <li class="flex items-center gap-3">✓ <span id="ultima-point2">Légáteresztő Méhsejt Design - higiénikus</span></li>
+                            <li class="flex items-center gap-3">✓ <span id="ultima-point3">Beépített Szemvédelem - biztonságos multitasking</span></li>
+                            <li class="flex items-center gap-3">✓ <span id="ultima-point4">Precíziós 3D Lebegő Szerkezet - egyenletes fény</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="bg-slate-800 text-slate-400 py-8 mt-12">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <p id="footer-text" class="text-sm">Ultima Expert Guide • Klinikai Szakmai Felület • 2024</p>
+                <p id="footer-credit" class="text-[10px] uppercase tracking-widest mt-2 opacity-50">Szakmai anyag az Ultima Solution forrásai alapján</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Globális változók
+        let currentLang = 'hu';
+        let currentWavelength = 'blue';
+        let penetrationChart = null;
+
+        // Fordítások
+        const translations = {
+            hu: {
+                subtitle: "Szakmai Dokumentáció Klinikai Felhasználásra",
+                badge: "Klinikai Szakértői Verzió",
+                "btn-overview": "Áttekintés",
+                "btn-science": "Hullámhossz Analízis",
+                "btn-deepdive": "Szakmai Mélyfúrás",
+                "btn-comparison": "Összehasonlítás",
+                "overview-title": "Technológiai Szinergia az Esztétikában",
+                "overview-intro": "Az Ultima LED maszk a legmodernebb fotobiomodulációs (PBM) eszköz, amelyet a klinikai lifting kezelések otthoni támogatására és a minimálinvazív beavatkozások hatásának fokozására fejlesztettek ki.",
+                "stat-weight": "93 gramm",
+                "stat-weight-desc": "Ultrakönnyű orvosi szilikon váz",
+                "stat-pbm": "PBM Technológia",
+                "stat-pbm-desc": "Sejtszintű biostimuláció",
+                "stat-protection": "Szemvédelem",
+                "stat-protection-desc": "Beépített árnyékolás, IP67 védelem",
+                "stat-silicone": "Orvosi Szilikon",
+                "stat-silicone-desc": "Bőrbarát, élelmiszeripari minőség",
+                "pillars-title": "A klinikai hatékonyság pillérei",
+                "pillar1-title": "Folyamatos kollagénaktiváció:",
+                "pillar1-desc": "A két klinikai kezelés közötti időszakban is „bekapcsolva tartja\" a regenerációt.",
+                "pillar2-title": "Gyorsabb regeneráció:",
+                "pillar2-desc": "Csökkenti a gyulladást és a downtime-ot lézeres vagy RF kezelések után.",
+                "pillar3-title": "Páciens compliance:",
+                "pillar3-desc": "Kényelmes, méhsejt design; multitasking lehetőség használat közben.",
+                quote: '"Tudományos alapú utóápolás a maximális eredményért."',
+                "science-title": "Fotobiomoduláció (PBM)",
+                "science-intro": "A LED-fény energiaforrásként szolgál a sejtek számára. Nem hőhatással dolgozik, hanem biológiai válaszreakciókat vált ki a mitokondriális aktivitás fokozásával.",
+                "wave-blue": "415 nm (Kék)",
+                "wave-blue-desc": "Epidermisz: antibakteriális hatás",
+                "wave-yellow": "590 nm (Sárga)",
+                "wave-yellow-desc": "Felső dermisz: pirosság csökkentése",
+                "wave-red": "630 nm (Vörös)",
+                "wave-red-desc": "Mély dermisz: kollagén & elasztin",
+                "wave-nir": "850 nm (NIR)",
+                "wave-nir-desc": "Szubkután: sejtregeneráció",
+                "select-wavelength-desc": "Kattintson az egyik spektrumra a klinikai hatásmechanizmus megtekintéséhez.",
+                "deepdive-title": "Klinikai Szinergiák és Eredmények",
+                "synergy-botox-title": "ULTIMAFACE HILEFT és BOTOX szinergia",
+                "synergy-botox-intro": "A modern esztétikában a Botox kiválóan alkalmas a mimikai ráncok blokkolására, de nem javítja közvetlenül a bőr textúráját. Az ULTIMAFACE HILEFT kiegészítő kezelésként való alkalmazása a következő előnyöket nyújtja:",
+                "synergy-point1-title": "Fokozott bőrfeszesítés:",
+                "synergy-point1-desc": "Míg a Botox az izmok blokkolásával simít, a HILEFT közvetlenül az izomtónust és a bőr textúráját célozza, ott is emelve a bőrt, ahol a Botox önmagában nem elegendő.",
+                "synergy-point2-title": "Kollagén- és elasztin-termelés serkentése:",
+                "synergy-point2-desc": "A vörös fény terápia elengedhetetlen a bőr rugalmasságához, így a bőr összességében egészségesebb és egyenletesebb lesz.",
+                "synergy-point3-title": "Tartósabb eredmények:",
+                "synergy-point3-desc": "Megőrizheti a bőrtónust és az elaszticitást, meghosszabbítva a Botox eredményeit és csökkentve az utántöltések gyakoriságát.",
+                "synergy-point4-title": "Izomtömeg regeneráció:",
+                "synergy-point4-desc": "A Botox hosszú távú használata izomsorvadást okozhat. A HILEFT technológia segít az izmok újjáépítésében és karbantartásában, stabil alapot biztosítva a bőrnek.",
+                "synergy-other-title": "Szinergiák egyéb beavatkozásokkal",
+                "synergy-other-intro": "A maszk nemcsak kiegészítő, hanem aktív utóápolási elem a következő esetekben:",
+                "filler-title": "Hialuronsavas töltések",
+                "filler-desc": "A maszk napi használata „bekapcsolva tartja\" a kollagénaktivációt, így a töltőanyag egy élettelibb szöveti környezetben helyezkedik el, ami javítja a kezelés tartósságát.",
+                "energy-title": "Energiaalapú kezelések (Lézer, RF, HIFU)",
+                "energy-desc": "A kontrollált hőkárosodás után a vörös fényterápia támogatja a sebgyógyulást, csökkenti a gyulladást és gyorsítja a szöveti helyreállítást a downtime alatt.",
+                "therapy-quote": '"A fényterápia célja a szervezet saját, természetes regenerációs képességeinek felerősítése, ami maximalizálja a klinikai beavatkozások esztétikai végeredményét."',
+                "comparison-title": "Piaci Komparáció",
+                "comparison-intro": "Miért az Ultima a választás az esztétikai orvoslásban?",
+                "traditional-title": "Hagyományos Merev Maszkok",
+                "trad-point1": "Merev, nehéz és kényelmetlen (nyomja az arcot)",
+                "trad-point2": "Zárt szerkezet, befülled, hőt halmoz fel",
+                "trad-point3": "Nincs beépített szemvédelem (fényszennyezés)",
+                "trad-point4": "Alap LED technológia, nem precíziós hullámhossz",
+                "premium-badge": "PRÉMIUM KIVITEL",
+                "ultima-point1": "93g Rugalmas Szilikon - tökéletes illeszkedés",
+                "ultima-point2": "Légáteresztő Méhsejt Design - higiénikus",
+                "ultima-point3": "Beépített Szemvédelem - biztonságos multitasking",
+                "ultima-point4": "Precíziós 3D Lebegő Szerkezet - egyenletes fény",
+                "footer-text": "Ultima Expert Guide • Klinikai Szakmai Felület • 2024",
+                "footer-credit": "Szakmai anyag az Ultima Solution forrásai alapján",
+                wavelengthBlueTitle: "Kék Fény (Blue)",
+                wavelengthBlueDesc: "Antibakteriális hatású, ideális aknés bőr kezelésére. Csökkenti a baktériumok számát és nyugtatja a gyulladást.",
+                wavelengthBlueDepth: "Epidermisz",
+                wavelengthYellowTitle: "Sárga Fény (Yellow)",
+                wavelengthYellowDesc: "Csökkenti a pirosságot, világosítja a bőrt és javítja a mikrocirkulációt. Nyugtató hatású.",
+                wavelengthYellowDepth: "Felső dermisz",
+                wavelengthRedTitle: "Vörös Fény (Red)",
+                wavelengthRedDesc: "A kollagén és elasztin szintézis motorja. Növeli a bőr feszességét és rugalmasságát.",
+                wavelengthRedDepth: "Mély dermisz",
+                wavelengthNirTitle: "Infravörös (NIR)",
+                wavelengthNirDesc: "Mély sejt szintű megújulás. Növeli az ATP-termelést és gyorsítja a gyógyulási folyamatokat.",
+                wavelengthNirDepth: "Hipodermisz",
+                targetArea: "Célterület"
+            },
+            en: {
+                subtitle: "Professional Documentation for Clinical Use",
+                badge: "Clinical Expert Version",
+                "btn-overview": "Overview",
+                "btn-science": "Wavelength Analysis",
+                "btn-deepdive": "Professional Deep Dive",
+                "btn-comparison": "Comparison",
+                "overview-title": "Technological Synergy in Aesthetics",
+                "overview-intro": "The Ultima LED mask is the most advanced photobiomodulation (PBM) device, developed to support clinical lifting treatments at home and enhance the effects of minimally invasive procedures.",
+                "stat-weight": "93 grams",
+                "stat-weight-desc": "Ultra-lightweight medical silicone frame",
+                "stat-pbm": "PBM Technology",
+                "stat-pbm-desc": "Cellular-level biostimulation",
+                "stat-protection": "Eye Protection",
+                "stat-protection-desc": "Built-in shading, IP67 protection",
+                "stat-silicone": "Medical Silicone",
+                "stat-silicone-desc": "Skin-friendly, food-grade quality",
+                "pillars-title": "Pillars of Clinical Efficacy",
+                "pillar1-title": "Continuous collagen activation:",
+                "pillar1-desc": "Keeps regeneration 'switched on' even between clinical treatments.",
+                "pillar2-title": "Faster regeneration:",
+                "pillar2-desc": "Reduces inflammation and downtime after laser or RF treatments.",
+                "pillar3-title": "Patient compliance:",
+                "pillar3-desc": "Comfortable honeycomb design; multitasking possible during use.",
+                quote: '"Science-based aftercare for maximum results."',
+                "science-title": "Photobiomodulation (PBM)",
+                "science-intro": "LED light serves as an energy source for cells. It does not work with heat, but triggers biological response reactions by increasing mitochondrial activity.",
+                "wave-blue": "415 nm (Blue)",
+                "wave-blue-desc": "Epidermis: antibacterial effect",
+                "wave-yellow": "590 nm (Yellow)",
+                "wave-yellow-desc": "Upper dermis: redness reduction",
+                "wave-red": "630 nm (Red)",
+                "wave-red-desc": "Deep dermis: collagen & elastin",
+                "wave-nir": "850 nm (NIR)",
+                "wave-nir-desc": "Subcutaneous: cell regeneration",
+                "select-wavelength-desc": "Click on one of the spectrums to view the clinical mechanism of action.",
+                "deepdive-title": "Clinical Synergies and Results",
+                "synergy-botox-title": "ULTIMAFACE HILEFT and BOTOX synergy",
+                "synergy-botox-intro": "In modern aesthetics, Botox is excellent for blocking mimic wrinkles, but does not directly improve skin texture. Using ULTIMAFACE HILEFT as a complementary treatment offers the following benefits:",
+                "synergy-point1-title": "Enhanced skin tightening:",
+                "synergy-point1-desc": "While Botox smooths by blocking muscles, HILEFT directly targets muscle tone and skin texture, lifting the skin even where Botox alone is insufficient.",
+                "synergy-point2-title": "Stimulation of collagen and elastin production:",
+                "synergy-point2-desc": "Red light therapy is essential for skin elasticity, making the skin overall healthier and more even.",
+                "synergy-point3-title": "More lasting results:",
+                "synergy-point3-desc": "Maintains skin tone and elasticity, extending Botox results and reducing the frequency of refills.",
+                "synergy-point4-title": "Muscle mass regeneration:",
+                "synergy-point4-desc": "Long-term use of Botox can cause muscle atrophy. HILEFT technology helps rebuild and maintain muscles, providing a stable foundation for the skin.",
+                "synergy-other-title": "Synergies with other procedures",
+                "synergy-other-intro": "The mask is not only complementary but an active aftercare element in the following cases:",
+                "filler-title": "Hyaluronic acid fillers",
+                "filler-desc": "Daily use of the mask keeps collagen activation 'switched on', so the filler is placed in a more vibrant tissue environment, improving treatment durability.",
+                "energy-title": "Energy-based treatments (Laser, RF, HIFU)",
+                "energy-desc": "After controlled heat damage, red light therapy supports wound healing, reduces inflammation and accelerates tissue recovery during downtime.",
+                "therapy-quote": '"The goal of light therapy is to amplify the body\'s own natural regenerative abilities, maximizing the aesthetic outcome of clinical interventions."',
+                "comparison-title": "Market Comparison",
+                "comparison-intro": "Why is Ultima the choice in aesthetic medicine?",
+                "traditional-title": "Traditional Rigid Masks",
+                "trad-point1": "Rigid, heavy and uncomfortable (presses on face)",
+                "trad-point2": "Closed structure, stuffy, accumulates heat",
+                "trad-point3": "No built-in eye protection (light pollution)",
+                "trad-point4": "Basic LED technology, not precision wavelength",
+                "premium-badge": "PREMIUM DESIGN",
+                "ultima-point1": "93g Flexible Silicone - perfect fit",
+                "ultima-point2": "Breathable Honeycomb Design - hygienic",
+                "ultima-point3": "Built-in Eye Protection - safe multitasking",
+                "ultima-point4": "Precision 3D Floating Structure - even light",
+                "footer-text": "Ultima Expert Guide • Clinical Professional Interface • 2024",
+                "footer-credit": "Professional material based on Ultima Solution sources",
+                wavelengthBlueTitle: "Blue Light",
+                wavelengthBlueDesc: "Antibacterial effect, ideal for treating acne-prone skin. Reduces bacterial count and calms inflammation.",
+                wavelengthBlueDepth: "Epidermis",
+                wavelengthYellowTitle: "Yellow Light",
+                wavelengthYellowDesc: "Reduces redness, brightens skin and improves microcirculation. Soothing effect.",
+                wavelengthYellowDepth: "Upper dermis",
+                wavelengthRedTitle: "Red Light",
+                wavelengthRedDesc: "The engine of collagen and elastin synthesis. Increases skin firmness and elasticity.",
+                wavelengthRedDepth: "Deep dermis",
+                wavelengthNirTitle: "Near Infrared (NIR)",
+                wavelengthNirDesc: "Deep cellular renewal. Increases ATP production and accelerates healing processes.",
+                wavelengthNirDepth: "Hypodermis",
+                targetArea: "Target area"
+            },
+            nl: {
+                subtitle: "Professionele Documentatie voor Klinisch Gebruik",
+                badge: "Klinische Expert Versie",
+                "btn-overview": "Overzicht",
+                "btn-science": "Golflengte Analyse",
+                "btn-deepdive": "Professionele Verdieping",
+                "btn-comparison": "Vergelijking",
+                "overview-title": "Technologische Synergie in Esthetiek",
+                "overview-intro": "Het Ultima LED-masker is het meest geavanceerde fotobiomodulatie (PBM) apparaat, ontwikkeld om klinische liftbehandelingen thuis te ondersteunen en de effecten van minimaal invasieve procedures te versterken.",
+                "stat-weight": "93 gram",
+                "stat-weight-desc": "Ultralicht medisch siliconen frame",
+                "stat-pbm": "PBM Technologie",
+                "stat-pbm-desc": "Biosimulatie op cellulair niveau",
+                "stat-protection": "Oogbescherming",
+                "stat-protection-desc": "Ingebouwde afscherming, IP67 bescherming",
+                "stat-silicone": "Medisch Silicone",
+                "stat-silicone-desc": "Huidvriendelijk, levensmiddelenkwaliteit",
+                "pillars-title": "Pijlers van Klinische Doeltreffendheid",
+                "pillar1-title": "Continue collageenactivatie:",
+                "pillar1-desc": "Houdt regeneratie 'ingeschakeld' zelfs tussen klinische behandelingen.",
+                "pillar2-title": "Snellere regeneratie:",
+                "pillar2-desc": "Vermindert ontsteking en downtime na laser- of RF-behandelingen.",
+                "pillar3-title": "Patiënt compliance:",
+                "pillar3-desc": "Comfortabel honingraatontwerp; multitasking mogelijk tijdens gebruik.",
+                quote: '"Wetenschappelijk gebaseerde nazorg voor maximale resultaten."',
+                "science-title": "Fotobiomodulatie (PBM)",
+                "science-intro": "LED-licht dient als energiebron voor cellen. Het werkt niet met warmte, maar activeert biologische reacties door mitochondriale activiteit te verhogen.",
+                "wave-blue": "415 nm (Blauw)",
+                "wave-blue-desc": "Epidermis: antibacterieel effect",
+                "wave-yellow": "590 nm (Geel)",
+                "wave-yellow-desc": "Bovenste dermis: vermindering van roodheid",
+                "wave-red": "630 nm (Rood)",
+                "wave-red-desc": "Diepe dermis: collageen & elastine",
+                "wave-nir": "850 nm (NIR)",
+                "wave-nir-desc": "Subcutaan: celregeneratie",
+                "select-wavelength-desc": "Klik op een van de spectra om het klinische werkingsmechanisme te bekijken.",
+                "deepdive-title": "Klinische Synergieën en Resultaten",
+                "synergy-botox-title": "ULTIMAFACE HILEFT en BOTOX synergie",
+                "synergy-botox-intro": "In moderne esthetiek is Botox uitstekend voor het blokkeren van mimische rimpels, maar verbetert het niet direct de huidtextuur. Het gebruik van ULTIMAFACE HILEFT als aanvullende behandeling biedt de volgende voordelen:",
+                "synergy-point1-title": "Verbeterde huidversteviging:",
+                "synergy-point1-desc": "Terwijl Botox gladstrijkt door spieren te blokkeren, richt HILEFT zich direct op spiertonus en huidtextuur, waarbij de huid wordt gelift zelfs waar Botox alleen onvoldoende is.",
+                "synergy-point2-title": "Stimulatie van collageen- en elastineproductie:",
+                "synergy-point2-desc": "Rood lichttherapie is essentieel voor huidelasticiteit, waardoor de huid over het algemeen gezonder en gelijkmatiger wordt.",
+                "synergy-point3-title": "Langduriger resultaten:",
+                "synergy-point3-desc": "Handhaaft huidstonus en elasticiteit, verlengt Botox-resultaten en vermindert de frequentie van bijvullingen.",
+                "synergy-point4-title": "Spiermassa regeneratie:",
+                "synergy-point4-desc": "Langdurig gebruik van Botox kan spieratrofie veroorzaken. HILEFT-technologie helpt bij het opbouwen en onderhouden van spieren en biedt een stabiele basis voor de huid.",
+                "synergy-other-title": "Synergieën met andere procedures",
+                "synergy-other-intro": "Het masker is niet alleen aanvullend, maar een actief nazorgelement in de volgende gevallen:",
+                "filler-title": "Hyaluronzuur fillers",
+                "filler-desc": "Dagelijks gebruik van het masker houdt collageenactivatie 'ingeschakeld', zodat de filler in een levendiger weefselomgeving wordt geplaatst, wat de duurzaamheid van de behandeling verbetert.",
+                "energy-title": "Energiegebaseerde behandelingen (Laser, RF, HIFU)",
+                "energy-desc": "Na gecontroleerde hitteschade ondersteunt rood lichttherapie wondgenezing, vermindert ontsteking en versnelt weefselherstel tijdens downtime.",
+                "therapy-quote": '"Het doel van lichttherapie is het versterken van de eigen natuurlijke regeneratieve capaciteiten van het lichaam, waardoor het esthetische resultaat van klinische interventies wordt gemaximaliseerd."',
+                "comparison-title": "Marktvergelijking",
+                "comparison-intro": "Waarom is Ultima de keuze in esthetische geneeskunde?",
+                "traditional-title": "Traditionele Stijve Maskers",
+                "trad-point1": "Stijf, zwaar en oncomfortabel (drukt op gezicht)",
+                "trad-point2": "Gesloten structuur, benauwd, stapelt warmte op",
+                "trad-point3": "Geen ingebouwde oogbescherming (lichtvervuiling)",
+                "trad-point4": "Basis LED-technologie, geen precisie golflengte",
+                "premium-badge": "PREMIUM ONTWERP",
+                "ultima-point1": "93g Flexibel Silicone - perfecte pasvorm",
+                "ultima-point2": "Ademend Honingraatontwerp - hygiënisch",
+                "ultima-point3": "Ingebouwde Oogbescherming - veilig multitasken",
+                "ultima-point4": "Precisie 3D Zwevende Structuur - gelijkmatig licht",
+                "footer-text": "Ultima Expert Guide • Klinische Professionele Interface • 2024",
+                "footer-credit": "Professioneel materiaal gebaseerd op Ultima Solution bronnen",
+                wavelengthBlueTitle: "Blauw Licht",
+                wavelengthBlueDesc: "Antibacterieel effect, ideaal voor behandeling van acnegevoelige huid. Vermindert bacteriële telling en kalmeert ontsteking.",
+                wavelengthBlueDepth: "Epidermis",
+                wavelengthYellowTitle: "Geel Licht",
+                wavelengthYellowDesc: "Vermindert roodheid, verheldert de huid en verbetert de microcirculatie. Kalmerend effect.",
+                wavelengthYellowDepth: "Bovenste dermis",
+                wavelengthRedTitle: "Rood Licht",
+                wavelengthRedDesc: "De motor van collageen- en elastinesynthese. Verhoogt de stevigheid en elasticiteit van de huid.",
+                wavelengthRedDepth: "Diepe dermis",
+                wavelengthNirTitle: "Nabij-Infrarood (NIR)",
+                wavelengthNirDesc: "Diepe cellulaire vernieuwing. Verhoogt ATP-productie en versnelt genezingsprocessen.",
+                wavelengthNirDepth: "Hypodermis",
+                targetArea: "Doelgebied"
+            }
+        };
+
+        const wavelengthData = {
+            blue: { nm: "415 nm", color: "rgba(59, 130, 246, 0.8)" },
+            yellow: { nm: "590 nm", color: "rgba(250, 204, 21, 0.8)" },
+            red: { nm: "630 nm", color: "rgba(239, 68, 68, 0.8)" },
+            nir: { nm: "850 nm", color: "rgba(107, 33, 168, 0.8)" }
+        };
+
+        // Nyelváltó funkció
+        window.switchLanguage = function(lang) {
+            currentLang = lang;
+            
+            // Gombok vizuális frissítése
+            ['hu', 'en', 'nl'].forEach(l => {
+                const btn = document.getElementById(`lang-${l}`);
+                if (l === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Szövegek frissítése - JAVÍTOTT RÉSZ (Biztonsági ellenőrzés)
+            Object.keys(translations[lang]).forEach(key => {
+                const elem = document.getElementById(key);
+                // Csak akkor frissítünk, ha az elem létezik
+                if (elem) {
+                    elem.textContent = translations[lang][key];
+                }
+            });
+
+            // HTML lang attribútum
+            document.documentElement.lang = lang;
+
+            // Grafikon címkék frissítése
+            if (penetrationChart) {
+                const labels = {
+                    hu: ['415nm (Kék)', '590nm (Sárga)', '630nm (Vörös)', '850nm (NIR)'],
+                    en: ['415nm (Blue)', '590nm (Yellow)', '630nm (Red)', '850nm (NIR)'],
+                    nl: ['415nm (Blauw)', '590nm (Geel)', '590nm (Rood)', '850nm (NIR)']
+                };
+                penetrationChart.data.labels = labels[lang];
+                penetrationChart.update();
+            }
+
+            // Dinamikus tartalom (hullámhossz leírás) frissítése
+            window.updateWavelength(currentWavelength);
+        };
+
+        // Tab váltás
+        window.switchTab = function(tabName) {
+            // Összes tab elrejtése
+            ['overview', 'science', 'deepdive', 'comparison'].forEach(t => {
+                const view = document.getElementById(`view-${t}`);
+                const btn = document.getElementById(`btn-${t}`);
+                
+                if (t === tabName) {
+                    view.classList.remove('hidden');
+                    btn.classList.remove('tab-inactive');
+                    btn.classList.add('tab-active');
+                } else {
+                    view.classList.add('hidden');
+                    btn.classList.remove('tab-active');
+                    btn.classList.add('tab-inactive');
+                }
+            });
+            
+            // Grafikon újraméretezése
+            if (tabName === 'science' && penetrationChart) {
+                setTimeout(() => penetrationChart.resize(), 100);
+            }
+        };
+
+        // Hullámhossz info frissítése
+        window.updateWavelength = function(type) {
+            // Aktuális állapot mentése
+            currentWavelength = type;
+            
+            const d = wavelengthData[type];
+            const lang = currentLang;
+            
+            const titleKey = `wavelength${type.charAt(0).toUpperCase() + type.slice(1)}Title`;
+            const descKey = `wavelength${type.charAt(0).toUpperCase() + type.slice(1)}Desc`;
+            const depthKey = `wavelength${type.charAt(0).toUpperCase() + type.slice(1)}Depth`;
+            
+            document.getElementById('info-title').textContent = translations[lang][titleKey];
+            document.getElementById('info-icon').textContent = type === 'nir' ? '🟣' : type === 'red' ? '🔴' : type === 'yellow' ? '🟡' : '🔵';
+            
+            // Biztonságos HTML beillesztés
+            const targetText = translations[lang].targetArea || "Célterület"; // Fallback
+            document.getElementById('info-desc').innerHTML = `
+                <p class="font-bold text-slate-800 mb-1">${d.nm}</p>
+                <p>${translations[lang][descKey]}</p>
+                <p class="text-xs text-slate-400 mt-2 italic">${targetText}: ${translations[lang][depthKey]}</p>
+            `;
+            
+            // Grafikon kiemelése - JAVÍTOTT LOGIKA
+            if (penetrationChart) {
+                // Alapértelmezett szürke színek újra minden alkalommal
+                const colors = [
+                    'rgba(226, 232, 240, 0.5)', 
+                    'rgba(226, 232, 240, 0.5)', 
+                    'rgba(226, 232, 240, 0.5)', 
+                    'rgba(226, 232, 240, 0.5)'
+                ];
+                
+                const indexMap = { 'blue': 0, 'yellow': 1, 'red': 2, 'nir': 3 };
+                // Csak a kiválasztottat színezzük át
+                colors[indexMap[type]] = d.color;
+                
+                penetrationChart.data.datasets[0].backgroundColor = colors;
+                penetrationChart.update();
+            }
+        };
+
+        // Inicializálás
+        document.addEventListener('DOMContentLoaded', () => {
+            // Chart inicializálása
+            const ctx = document.getElementById('penetrationChart').getContext('2d');
+            penetrationChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['415nm (Kék)', '590nm (Sárga)', '630nm (Vörös)', '850nm (NIR)'],
+                    datasets: [{
+                        label: 'Penetrációs Mélység',
+                        data: [1, 2, 3, 4],
+                        backgroundColor: Object.values(wavelengthData).map(d => d.color),
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { display: false, max: 4.5 },
+                        y: { grid: { display: false }, ticks: { font: { weight: 'bold' } } }
+                    }
+                }
+            });
+
+            // Alapértelmezett hullámhossz beállítása az aktuális nyelvvel
+            window.updateWavelength('blue');
+        });
+    </script>
+</body>
+</html>
